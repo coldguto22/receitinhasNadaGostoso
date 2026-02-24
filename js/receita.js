@@ -1,5 +1,4 @@
 // @ts-nocheck
-const clockSVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
 
 document.addEventListener('DOMContentLoaded', () => {
   const id = parseInt(new URLSearchParams(window.location.search).get('id'), 10);
@@ -50,9 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${r.image}" alt="${r.name}" loading="lazy">
         <div class="related-card-body">
           <p class="related-card-title">${r.name}</p>
-          <p class="related-card-time">${clockSVG} ${r.time}</p>
+          <p class="related-card-time">${Icons.clock} ${r.time}</p>
         </div>
       </a>`).join('');
+
+  // Busca: redireciona para home com query
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      window.location.href = 'index.html?q=' + encodeURIComponent(e.target.value.trim());
+    }
+  });
 
   // Botão de votar
   const btn = document.getElementById('voteBtn');

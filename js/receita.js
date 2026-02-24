@@ -25,10 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('infoServings').textContent = recipe.servings + ' pessoas';
   document.getElementById('infoDifficulty').textContent = recipe.difficulty;
 
-  // Votos (base + delta salvo)
-  const voteDeltas = JSON.parse(localStorage.getItem('vote_counts') || '{}');
-  const totalVotes = () => recipe.votes + (voteDeltas[id] || 0);
-  document.getElementById('infoVotes').textContent = totalVotes();
+  // Votos
+  document.getElementById('infoVotes').textContent = Storage.totalVotes(recipe);
 
   // Ingredientes
   document.getElementById('ingredientsList').innerHTML =
@@ -62,23 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Botão de votar
   const btn = document.getElementById('voteBtn');
-  const voted = JSON.parse(localStorage.getItem('voted_ids') || '[]');
 
-  if (voted.includes(id)) {
+  if (Storage.hasVoted(id)) {
     btn.textContent = 'Você já votou nesta receita';
     btn.disabled = true;
   }
 
   btn.addEventListener('click', () => {
-    if (voted.includes(id)) return;
-
-    voteDeltas[id] = (voteDeltas[id] || 0) + 1;
-    localStorage.setItem('vote_counts', JSON.stringify(voteDeltas));
-
-    voted.push(id);
-    localStorage.setItem('voted_ids', JSON.stringify(voted));
-
-    document.getElementById('infoVotes').textContent = totalVotes();
+    if (Storage.hasVoted(id)) return;
+    Storage.vote(id);
+    document.getElementById('infoVotes').textContent = Storage.totalVotes(recipe);
     btn.textContent = 'Obrigado pelo seu voto!';
     btn.disabled = true;
   });

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReceitasBR - Receita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
+          <line x1="6" y1="17" x2="18" y2="17"/>
+          <line x1="6" y1="13" x2="18" y2="13"/>
+        </svg>
+        <span>ReceitasBR</span>
+      </a>
+
+      <div class="navbar-search">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" class="search-input" placeholder="Buscar receitas..."
+            onkeydown="if(event.key==='Enter') window.location.href='index.html?q='+this.value">
+        </div>
+      </div>
+
+      <nav class="navbar-links">
+        <a href="index.html" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Início
+        </a>
+        <a href="#" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          Admin
+        </a>
+      </nav>
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO DA RECEITA (populado por receita.js) -->
+  <main id="receitaPage" style="display: none;">
+
+    <!-- BACK LINK -->
+    <div class="container back-link-wrapper">
+      <a href="index.html" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+        Voltar
+      </a>
+    </div>
+
+    <!-- HERO DA RECEITA -->
+    <div class="detail-hero">
+      <img src="" alt="" id="detailImage" class="detail-hero-img">
+      <div class="detail-hero-overlay">
+        <div class="container">
+          <span class="detail-category-badge" id="detailCategory"></span>
+          <h1 class="detail-title" id="detailTitle"></h1>
+          <p class="detail-description" id="detailDescription"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- INFO BAR -->
+      <div class="info-bar">
+        <div class="info-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <p class="info-label">Tempo de Preparo</p>
+          <p class="info-value" id="infoTime"></p>
+        </div>
+        <div class="info-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <p class="info-label">Porções</p>
+          <p class="info-value" id="infoServings"></p>
+        </div>
+        <div class="info-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
+            <line x1="6" y1="17" x2="18" y2="17"/><line x1="6" y1="13" x2="18" y2="13"/>
+          </svg>
+          <p class="info-label">Dificuldade</p>
+          <p class="info-value" id="infoDifficulty"></p>
+        </div>
+        <div class="info-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+          <p class="info-label">Votos</p>
+          <p class="info-value" id="infoVotes"></p>
+        </div>
+      </div>
+
+      <!-- BOTÃO VOTAR -->
+      <div class="vote-wrapper">
+        <button class="vote-btn" id="voteBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+            <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+          </svg>
+          Votar nesta Receita
+        </button>
+      </div>
+
+      <!-- INGREDIENTES + MODO DE PREPARO -->
+      <div class="content-grid">
+        <section class="content-section">
+          <h2>Ingredientes</h2>
+          <div class="ingredients-box">
+            <ul class="ingredients-list" id="ingredientsList"></ul>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2>Modo de Preparo</h2>
+          <ol class="steps-list" id="stepsList"></ol>
+        </section>
+      </div>
+
+      <!-- RECEITAS RELACIONADAS -->
+      <div class="related-section">
+        <h2>Receitas Relacionadas</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ESTADO DE NÃO ENCONTRADO -->
+  <div id="notFound" style="display: none;">
+    <div class="not-found">
+      <p>Receita não encontrada.</p>
+      <a href="index.html" class="btn-primary">Voltar ao início</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ReceitasBR &mdash; Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/receita.js"></script>
+</body>
+</html>

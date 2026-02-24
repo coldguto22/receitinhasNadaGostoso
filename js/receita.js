@@ -42,14 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Receitas relacionadas
   document.getElementById('relatedGrid').innerHTML =
-    recipes.filter(r => recipe.related.includes(r.id)).map(r => `
-      <a href="receita.html?id=${r.id}" class="related-card">
-        <img src="${r.image}" alt="${r.name}" loading="lazy">
-        <div class="related-card-body">
-          <p class="related-card-title">${r.name}</p>
-          <p class="related-card-time">${Icons.clock} ${r.time}</p>
-        </div>
-      </a>`).join('');
+    recipes.filter(r => recipe.related.includes(r.id)).map(Cards.related).join('');
 
   // Busca: redireciona para home com query
   document.getElementById('searchInput').addEventListener('keydown', e => {
